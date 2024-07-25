@@ -66,29 +66,45 @@ function fnSqlArticleEdit($articleNo)
 //
 //物件管理情報更新
 //
+function fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del)
+{
+	$sql  = "UPDATE TBLARTICLE";
+	$sql .= " SET ARTICLE = '$article'";
+	$sql .= ",ROOM = '$room'";
+	$sql .= ",KEYPLACE = '$keyPlace'";
+	$sql .= ",ADDRESS = '$address'";
+	$sql .= ",ARTICLENOTE = '$articleNote'";
+	$sql .= ",KEYBOX = '$keyBox'";
+	$sql .= ",DRAWING = '$drawing'";
+	$sql .= ",SELLCHARGE = '$sellCharge'";
+	$sql .= ",UPDT = CURRENT_TIMESTAMP";
+	$sql .= ",DEL = '$del'";
+	$sql .= " WHERE ARTICLENO = $articleNo";
+
+	return ($sql);
+}
 
 
 
 //
 //物件管理情報登録
 //
-function fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del)
+function fnSqlArticleInsert($articleNo, $article, $room, $keyPlace, $address, $articleNote, $keyBox, $drawing, $sellCharge, $del)
 {
-    $sql  = "UPDATE TBLARTICLE";
-    $sql .= " SET ARTICLE = '$article'";
-    $sql .= ",ROOM = '$room'";
-    $sql .= ",KEYPLACE = '$keyPlace'";
-    $sql .= ",ADDRESS = '$address";
-    $sql .= ",ARTICLENOTE = '$articleNote'";
-    $sql .= ",KEYBOX = '$keyBox'";
-    $sql .= ",DRAWING = '$drawing'";
-    $sql .= ",SELLCHARGE = '$sellCharge'";
-    $sql .= ",UPDT = CURRENT_TIMESTAMP";
-    $sql .= ",DEL = '$del'";
-    $sql .= " WHERE ARTICLENO = $articleNo";
+    $sql  = "INSERT INTO TBLARTICLE (";
+    $sql .= " ARTICLENO, ARTICLE, ROOM, KEYPLACE, ADDRESS, ARTICLENOTE, KEYBOX, DUEDT, SELLCHARGE, AREA, YEARS, SELLPRICE, INTERIORPRICE, CONSTTRADER,"
+        . " CONSTPRICE, CONSTADD, CONSTNOTE, PURCHASEDT, WORKSTARTDT, WORKENDDT, LINEOPENDT, LINECLOSEDT, RECEIVE, HOTWATER, SITEDT, LEAVINGFORM,"
+        . " LEAVINGDT, MANAGECOMPANY, FLOORPLAN, FORMEROWNER, BROKERCHARGE, BROKERCONTACT, INTERIORCHARGE, CONSTFLG1, CONSTFLG2, CONSTFLG3, CONSTFLG4, INSDT, UPDT, DEL,"
+        . " DRAWING, LINEOPENCONTACTDT, LINECLOSECONTACTDT, LINECONTACTNOTE, ELECTRICITYCHARGE, GASCHARGE, LIGHTORDER";
+    $sql .= " ) VALUES ( ";
+    $sql .= "'$articleNo', '$article', '$room', '$keyPlace', '$address', '$articleNote', '$keyBox', '', '$sellCharge', '', '', '', '', '',"
+        . " '', '', '', '', '', '', '', '', '', '', '', '',"
+        . " '', '', '', '', '', '', '', '', '', '', '', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '$del',"
+        . " '$drawing', '', '', '', '', '', '' )";
 
     return ($sql);
 }
+
 
 //
 //物件管理情報削除
