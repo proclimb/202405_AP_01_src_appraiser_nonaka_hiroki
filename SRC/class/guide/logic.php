@@ -23,7 +23,7 @@ function subGuide()
         $param["orderBy"] = 'A.GUIDESTARTDT';
         $param["orderTo"] = 'DESC';
     }
-
+var_dump($param);
     subMenu();
     subGuideView($param);
 }
